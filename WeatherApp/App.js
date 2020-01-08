@@ -14,6 +14,9 @@ import {
   View,
   Text,
   StatusBar,
+  FlatList,
+  TouchableHighlight,
+  Dimensions
 } from 'react-native';
 
 import {
@@ -23,15 +26,14 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-import Home from "./components/Home/Home"
+import Home from './components/Home/Home';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Home />
+      <SafeAreaView style = {{ flex: 1 }}>
+      <Home />
       </SafeAreaView>
     </>
   );

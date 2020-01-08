@@ -1,98 +1,57 @@
 import React from 'react';
 import {
+  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
+  StatusBar,
+  FlatList,
+  TouchableHighlight,
+  Dimensions,
+  Button
 } from 'react-native';
 
 import {
-    Header,
-    LearnMoreLinks,
-    Colors,
-    DebugInstructions,
-    ReloadInstructions,
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import LocationTemperatureView from './LocationTemperatureView';
+import PageControl from 'react-native-page-control';
+import Locations from '../Location/Locations';
 
 
 export default Home => {
+    const {height, width} = Dimensions.get('window');
+    const itemWidth = (width);
     return (
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-    );
+        <View style = {{ flex: 1, backgroundColor: Colors.dark}}>
+        <FlatList style = {{ marginBottom: 24 }}
+            horizontal
+            pagingEnabled
+            data={[{title: 'Title Text', key: 'item1'}, {title: 'Title Text', key: 'item2'}, {title: 'Title Text', key: 'item3'}, {title: 'Title Text', key: 'item4'}, {title: 'Title Text', key: 'item5'}]}
+            renderItem={({item, index, separators}) => (
+            <LocationTemperatureView title = {item.title} />
+        )}/>
+        <View style = {{ justifyContent: 'space-between', flexDirection: 'row-reverse'}}>
+        <PageControl
+                style={{position:'absolute', left:0, right:0, bottom:12}}
+                numberOfPages={3}
+                currentPage={1}
+                hidesForSinglePage
+                pageIndicatorTintColor='gray'
+                currentPageIndicatorTintColor='white'
+                indicatorStyle={{borderRadius: 5}}
+                currentIndicatorStyle={{borderRadius: 5}}
+                indicatorSize={{width:8, height:8}}
+                onPageIndicatorPress={this.onItemTap}/>
+        <Button title ="Done"/>
+        <Locations modalVisible = {false} />
+        </View>
+        </View>
+        
+    )
 }
-
-const styles = StyleSheet.create({
-    scrollView: {
-      backgroundColor: Colors.lighter,
-    },
-    engine: {
-      position: 'absolute',
-      right: 0,
-    },
-    body: {
-      backgroundColor: Colors.white,
-    },
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: Colors.black,
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-      color: Colors.dark,
-    },
-    highlight: {
-      fontWeight: '700',
-    },
-    footer: {
-      color: Colors.dark,
-      fontSize: 12,
-      fontWeight: '600',
-      padding: 4,
-      paddingRight: 12,
-      textAlign: 'right',
-    },
-  });
