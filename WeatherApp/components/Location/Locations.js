@@ -35,15 +35,17 @@ export default Locations = (props) => {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
+       <StatusBar barStyle="dark-content" />
+       <SafeAreaView style = {{ flex: 1 }}>
         <View style = {{ flex: 1, backgroundColor: Colors.dark}}>
-        <FlatList style = {{ marginBottom: 24 }}
-            horizontal
+        <FlatList 
             pagingEnabled
-            data={[{title: 'Title Text', key: 'item1'}, {title: 'Title Text', key: 'item2'}, {title: 'Title Text', key: 'item3'}, {title: 'Title Text', key: 'item4'}, {title: 'Title Text', key: 'item5'}]}
+            data={[{title: 'Lahore', key: 'item1'}, {title: 'Karachi', key: 'item2'}, {title: 'Peshawar', key: 'item3'}, {title: 'Islamabad', key: 'item4'}, {title: 'Multan', key: 'item5'}]}
             renderItem={({item, index, separators}) => (
             <LocationListView title = {item.title} />
         )}/>
         </View>
+        </SafeAreaView>
         </Modal>
         
     )

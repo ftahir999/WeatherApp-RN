@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,6 +25,8 @@ import Locations from '../Location/Locations';
 
 
 export default Home => {
+    const [showLocation, setShowLocation] = useState(false);
+
     const {height, width} = Dimensions.get('window');
     const itemWidth = (width);
     return (
@@ -48,8 +50,8 @@ export default Home => {
                 currentIndicatorStyle={{borderRadius: 5}}
                 indicatorSize={{width:8, height:8}}
                 onPageIndicatorPress={this.onItemTap}/>
-        <Button title ="Done"/>
-        <Locations modalVisible = {false} />
+        <Button title ="Done" onPress = {() => setShowLocation(true)}/>
+        <Locations modalVisible = {showLocation} />
         </View>
         </View>
         
